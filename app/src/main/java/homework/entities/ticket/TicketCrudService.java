@@ -14,7 +14,7 @@ import java.util.List;
 public class TicketCrudService {
 
     public void createTicket(Client client, Planet toPlanet, Planet fromPlanet) {
-
+        if (client != null && toPlanet != null && fromPlanet != null) {
             Session session = HibernateUtil.getInstance().getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
             Ticket ticket = new Ticket();
@@ -24,7 +24,7 @@ public class TicketCrudService {
             session.persist(ticket);
             transaction.commit();
             session.close();
-
+        }
     }
 
     public void updateTicketById(long id, Client client, Planet toPlanet, Planet fromPlanet) {
